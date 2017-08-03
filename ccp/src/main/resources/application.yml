@@ -15,6 +15,10 @@ mybatis:
 
 # spring.profiles.activeにアクティブなプロファイルを指定する
 spring:
+  mvc:
+   view:
+    prefix: /webapp
+    suffix: html
   profiles:
     active: dev
   messages:
