@@ -1,5 +1,7 @@
 package jp.co.drm.cpp;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,6 +11,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 @MapperScan("jp.co.drm.ccp.**.integration.mybatis.dao")
 public class Application {
 
+	private  final Logger logger = LogManager.getLogger(this.getClass());
 /*	@Autowired
 	TblUserDao userDao;*/
 
@@ -19,7 +22,7 @@ public class Application {
 	}
 
 	public void hello() {
-		System.out.println("hello2()");
+		logger.info("logger hello2()");
 	}
 
 
