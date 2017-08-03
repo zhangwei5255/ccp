@@ -4,11 +4,6 @@ cpp:
     basenames: classpath:ErrorResources, classpath:ErrorResources2
   items:
     basenames: classpath:ItemResources.properties,  classpath:ItemResources.properties
-
-logging:
-  file: cpp.log
-  #level: info
-
 #指定bean所在包
 #指定映射文件
 mybatis:
