@@ -3,8 +3,8 @@ package jp.co.drm.framework.core.exception.handler;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 public class GlobalExceptionResolver implements HandlerExceptionResolver {
 
-//	private  final Logger logger = LogManager.getLogger(this.getClass());
+	private  final Logger logger = LogManager.getLogger(this.getClass());
 
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object object,
 			Exception ex) {
@@ -31,7 +31,7 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
 			response.setStatus(hsce.getStatusCode().value());
 
 			if(hsce.getStatusCode() == HttpStatus.REQUEST_TIMEOUT){
-	//			 logger.info("セッションタイムアウト画面へ遷移します。");
+				 logger.info("セッションタイムアウト画面へ遷移します。");
 				 mav.setViewName("/err/sesson_timeout.html");
 			}
 			return mav;
