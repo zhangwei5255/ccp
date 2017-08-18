@@ -14,7 +14,7 @@ public class Application {
 
 	private  final Logger logger = LogManager.getLogger(this.getClass());
 /*	@Autowired
-	TblUserDao userDao;*/
+	TblUserDao userDao;   corporation */
 
 	public static void main(String[] args) throws Exception {
 		ConfigurableApplicationContext cac = SpringApplication.run(Application.class, args);
@@ -22,8 +22,9 @@ public class Application {
 		app.hello();
 	}
 
-	public void hello() {
+	public void hello() throws Exception {
 		logger.info("logger hello2()");
+	//	throw new Exception("test");
 	}
 
 
