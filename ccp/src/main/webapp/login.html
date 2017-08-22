@@ -3,24 +3,38 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>ログイン画面</title>
+<link rel="stylesheet" href="css/lib/font-awesome.css">
 <link href="css/lib/bootstrap.min.css" rel="stylesheet">
 <link href="css/front/index.css" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-      <form class="form-signin">
-        <h2 class="form-signin-heading">WMS ログイン</h2>
-        <label for="txtUserId" class="sr-only">ユーザー</label>
-        <input type="text" id="txtUserId" class="form-control" placeholder="ユーザー"  required autofocus>
-        <label for="txtPwd" class="sr-only">パスワード</label>
-        <input type="password" id="txtPwd" class="form-control" placeholder="パスワード" required>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> 資格情報記憶
-          </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="button">Sign in</button>
-      </form>
-    </div>
+	<div class="container">
+		<form class="form-signin">
+			<h2 class="form-signin-heading">WMS ログイン</h2>
+
+			<div class="input-group margin-bottom-sm">
+				<span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+				<label for="txtUserId" class="sr-only">ユーザー</label>
+				 <input
+				type="text" id="txtUserId" class="form-control" placeholder="ユーザー"
+				autofocus>
+			</div>
+
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+				<label for="txtPwd" class="sr-only">パスワード</label>
+				<input type="password" id="txtPwd" class="form-control"
+					placeholder="パスワード">
+			</div>
+
+			<div class="checkbox">
+				<label> <input type="checkbox" value="remember-me">
+					資格情報記憶
+				</label>
+			</div>
+
+			<button class="btn btn-lg btn-primary btn-block" type="button">ログイン</button>
+		</form>
+	</div>
 </body>
 </html>
