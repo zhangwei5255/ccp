@@ -36,10 +36,8 @@ dependencies {
 	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.8.1'
 	compile group: 'com.lmax', name: 'disruptor', version: '3.3.6'
 
-
- //compile project(':drm.core')
- compile project(':..:drm.core')  //相対パス
- compile project(':..:ccp.dao')  //相対パス
+ //compile project(':..:drm.core')  //相対パス
+ //compile project(':..:ccp.dao')  //相対パス
  // compile project(path: 'D:/work/zw/pleiades/workspace/drm.core', configuration: 'spi')
 
   compile("org.springframework.boot:spring-boot-starter-web")

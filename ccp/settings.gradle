@@ -15,6 +15,6 @@ include 'shared'
 include 'api'
 include 'services:webservice'
 */
-include ':..:drm.core'
-include ':..:ccp.dao'
+//include ':..:drm.core'
+//include ':..:ccp.dao'
 rootProject.name = 'ccp'
