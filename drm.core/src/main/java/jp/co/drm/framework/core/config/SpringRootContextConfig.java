@@ -58,6 +58,21 @@ public class SpringRootContextConfig {
 		return messageSource;
 	}
 
+	@Bean
+	public Properties itemProperties() throws IOException {
+		LinkedPropertiesFactoryBean factory = new LinkedPropertiesFactoryBean();
+		factory.setFileEncoding("utf8");
+		String[] names = itemBasenames.split(",");
+		List<Resource> lstResouce = Stream.of(names)
+				.map(p -> resourceLoader.getResource(p))
+				.collect(Collectors.toList());
+		factory.setLocations(lstResouce.toArray(new Resource[lstResouce.size()]));
+		factory.afterPropertiesSet();
+
+		Properties properties = factory.getObject();
+		return properties;
+	}
+
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
 		// DBCP2のデータソースを使う
@@ -97,19 +112,6 @@ public class SpringRootContextConfig {
 		return localValidatorFactoryBean;
 	}
 
-	@Bean
-	public Properties itemProperties() throws IOException {
-		LinkedPropertiesFactoryBean factory = new LinkedPropertiesFactoryBean();
-		factory.setFileEncoding("utf8");
-		String[] names = itemBasenames.split(",");
-		List<Resource> lstResouce = Stream.of(names)
-				.map(p -> resourceLoader.getResource(p))
-				.collect(Collectors.toList());
-		factory.setLocations(lstResouce.toArray(new Resource[lstResouce.size()]));
-		factory.afterPropertiesSet();
 
-		Properties properties = factory.getObject();
-		return properties;
-	}
 
 }
