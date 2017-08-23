@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.co.drm.ccp.web.integration.mybatis.dao.LoginDao">
+	<resultMap id="BaseResultMap"
+		type="jp.co.drm.ccp.web.integration.mybatis.dto.LoginDto">
+		<id column="USER_ID" jdbcType="VARCHAR" property="userId" />
+		<result column="USER_NM" jdbcType="VARCHAR" property="userNm" />
+		<association property="mstRole" resultMap="mstRoleResult" />
+		<collection property="mstModules"
+			ofType="jp.co.drm.ccp.base.integration.mybatis.entity.MstRole"
+			resultMap="mstRoleResult" />
+	</resultMap>
+
+	<resultMap id="mstRoleResult"
+		type="jp.co.drm.ccp.base.integration.mybatis.entity.MstRole">
+		<id column="ROLE_CD" jdbcType="VARCHAR" property="roleCd" />
+		<result column="ROLE_NM" jdbcType="VARCHAR" property="roleNm" />
+	</resultMap>
+
+	<resultMap id="mstModuleResult"
+		type="jp.co.drm.ccp.base.integration.mybatis.entity.MstModule">
+		<id column="ROLE_CD" jdbcType="VARCHAR" property="roleCd" />
+		<id column="MODULE_CD" jdbcType="VARCHAR" property="moduleCd" />
+		<result column="MODULE_NM" jdbcType="VARCHAR" property="moduleNm" />
+	</resultMap>
+
+
+
+	<select id="selectUserInfoById" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+  U.USER_ID
+  , U.USER_NM
+  , R.ROLE_CD
+  , R.ROLE_NM
+  , M.MODULE_CD
+  , M.MODULE_NM
+from
+  MST_USER U
+  left join MST_ROLE R
+    on U.ROLE_CD = R.ROLE_CD
+  left join MST_MODULE M
+    ON R.ROLE_CD = M.ROLE_CD
+where
+		U.USER_ID = #{userid,jdbcType=VARCHAR}
+	</select>
+
+
+
+</mapper>

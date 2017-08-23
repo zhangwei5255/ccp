@@ -1,14 +1,14 @@
 /**
  * このJavascriptはアプリケーションの名前空間を作成します。
  */
-var cpp = {
+var ccp = {
 };
 
-cpp.vm = {};
+ccp.vm = {};
 
-cpp.model = {};
+ccp.model = {};
 
-cpp.model.data = {};
+ccp.model.data = {};
 
-cpp.common = {};
-cpp.common.tabbrowse = {};
+ccp.common = {};
+ccp.common.tabbrowse = {};
