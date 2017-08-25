@@ -3,6 +3,7 @@ package jp.co.drm.framework.core.exception.handler;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,8 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
 
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object object,
 			Exception ex) {
+
+		logger.info(ExceptionUtils.getStackTrace(ex));
 
 		ModelAndView mav = new ModelAndView();
 
