@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="jp.co.drm.ccp.web.integration.mybatis.dao.LoginDao">
+	<!--
 	<resultMap id="BaseResultMap"
 		type="jp.co.drm.ccp.web.integration.mybatis.dto.LoginDto">
 		<id column="USER_ID" jdbcType="VARCHAR" property="userId" />
@@ -25,24 +26,45 @@
 		<id column="MODULE_CD" jdbcType="VARCHAR" property="moduleCd" />
 		<result column="MODULE_NM" jdbcType="VARCHAR" property="moduleNm" />
 	</resultMap>
+-->
 
+	<resultMap id="BaseResultMap"
+		type="jp.co.drm.ccp.web.integration.mybatis.dto.LoginDto">
+		<id column="USER_ID" jdbcType="VARCHAR" property="userId" />
+		<result column="USER_NM" jdbcType="VARCHAR" property="userNm" />
+		<collection property="groupInfoDtos"
+			ofType="jp.co.drm.ccp.web.integration.mybatis.dto.GroupInfoDto"
+			resultMap="groupInfoDtoResult" />
+	</resultMap>
+
+	<resultMap id="groupInfoDtoResult"
+		type="jp.co.drm.ccp.web.integration.mybatis.dto.GroupInfoDto">
+		<id column="GROUP_ID" jdbcType="VARCHAR" property="groupId" />
+		<id column="MODULE_CD" jdbcType="VARCHAR" property="moduleCd" />
+		<result column="GROUP_NM" jdbcType="VARCHAR" property="groupNm" />
+		<result column="MODULE_NM" jdbcType="VARCHAR" property="moduleNm" />
+	</resultMap>
 
 
 	<select id="selectUserInfoById" parameterType="java.lang.String"
 		resultMap="BaseResultMap">
-		select
+select
   U.USER_ID
   , U.USER_NM
-  , R.ROLE_CD
-  , R.ROLE_NM
+  , G.GROUP_ID
+  , G.GROUP_NM
   , M.MODULE_CD
   , M.MODULE_NM
 from
   MST_USER U
-  left join MST_ROLE R
-    on U.ROLE_CD = R.ROLE_CD
+  left join MST_GROUP_USER GU
+    on U.USER_ID = GU.USER_ID
+  left join MST_GROUP G
+    ON G.GROUP_ID = GU.GROUP_ID
+  left join MST_GROUP_ROLE GR
+  	ON G.GROUP_ID = GR.GROUP_ID
   left join MST_MODULE M
-    ON R.ROLE_CD = M.ROLE_CD
+    ON M.MODULE_CD = GR.MODULE_CD
 where
 		U.USER_ID = #{userid,jdbcType=VARCHAR}
 	</select>

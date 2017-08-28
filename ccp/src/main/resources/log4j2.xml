@@ -29,6 +29,13 @@
 			<AppenderRef ref="STDOUT" />
 		</Root>
 
+		<AsyncLogger name="java.sql" level="info" additivity="false">
+            <AppenderRef ref="sql" />
+        </AsyncLogger>
+        <AsyncLogger name="com.ibatis" level="info" additivity="false">
+            <AppenderRef ref="sql" />
+        </AsyncLogger>
+
 	</Loggers>
 
 </Configuration>
