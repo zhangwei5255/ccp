@@ -1,7 +1,7 @@
 #共通
 cpp:
   messages:
-    basenames: classpath:ErrorResources, classpath:ErrorResources2
+    basenames: classpath:ErrorResources, classpath:ValidationMessages
   items:
     basenames: classpath:ItemResources.properties,  classpath:ItemResources.properties
 

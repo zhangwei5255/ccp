@@ -42,7 +42,7 @@ logging:
     jdbc:
      sqlonly: DEBUG
      sqltiming: INFO
-     audit: ERROR
+     audit: INFO
      resultset: ERROR
      resultsettable: ERROR
      connection: DEBUG
