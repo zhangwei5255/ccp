@@ -9,7 +9,10 @@ cpp:
 mybatis:
   type-aliases-package: jp.co.tonoyo.longchamp.model
   config-locations: classpath:mybatis/mybatis-config.xml
-  mapperLocations: classpath:jp/co/drm/ccp/**/integration/mybatis/sqlmap/*.xml
+  mapper-Locations: classpath:jp/co/drm/ccp/**/integration/mybatis/sqlmap/*.xml
+  #複数の場合
+  # - classpath*:/mybatis/sqls/aaa/**/*.xml
+  # - classpath*:/mybatis/sqls/bbb/**/*.xml
 
 # spring.profiles.activeにアクティブなプロファイルを指定する
 spring:
