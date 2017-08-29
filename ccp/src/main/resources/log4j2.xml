@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
 
+	<Properties>
+		<Property name="log-path">logs</Property>
+		<Property name="archive">${log-path}/archive</Property>
+		<Property name="standard">%-5p | %d{yyyy-MM-dd HH:mm:ss} | [%t] %C{2} (%F:%L) - %m%n</Property>
+		<Property name="business">%-5p | %d{yyyy-MM-dd HH:mm:ss} | [%t] %C{2} (%F:%L) - %m%n</Property>
+	</Properties>
+
 	<Appenders>
 		<!-- Async Loggers will auto-flush in batches, so switch off immediateFlush. -->
-		<RandomAccessFile name="ASYNC" fileName="async.log"
+		<RandomAccessFile name="ASYNC" fileName="${log-path}/async.log"
 			immediateFlush="false" append="false">
 			<PatternLayout
-				pattern="%-5p | %d{yyyy-MM-dd HH:mm:ss} | [%t] %C{2} (%F:%L) - %m%n" />
+				pattern="${standard}" />
 		</RandomAccessFile>
 		<!-- console output -->
 		<Console name="STDOUT" target="SYSTEM_OUT">
 			<PatternLayout
-				pattern="%-5p | %d{yyyy-MM-dd HH:mm:ss} | [%t] %C{2} (%F:%L) - %m%n" />
+				pattern="${business}" />
 		</Console>
 	</Appenders>
 
@@ -28,13 +35,6 @@
 		<Root level="info" includeLocation="true">
 			<AppenderRef ref="STDOUT" />
 		</Root>
-
-		<AsyncLogger name="java.sql" level="info" additivity="false">
-            <AppenderRef ref="sql" />
-        </AsyncLogger>
-        <AsyncLogger name="com.ibatis" level="info" additivity="false">
-            <AppenderRef ref="sql" />
-        </AsyncLogger>
 
 	</Loggers>
 

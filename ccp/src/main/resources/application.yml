@@ -4,6 +4,7 @@ cpp:
     basenames: classpath:ErrorResources, classpath:ErrorResources2
   items:
     basenames: classpath:ItemResources.properties,  classpath:ItemResources.properties
+
 #指定bean所在包
 #指定映射文件
 mybatis:

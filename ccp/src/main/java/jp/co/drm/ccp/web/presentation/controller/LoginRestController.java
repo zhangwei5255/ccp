@@ -47,6 +47,12 @@ public class LoginRestController extends BaseController{
 //
 //	}
 
+	@RequestMapping(value="/error",method = {RequestMethod.GET, RequestMethod.POST})
+	public void testErr() throws Exception{
+
+		throw new Exception("test");
+	}
+
 	@RequestMapping(value="/logout",method = {RequestMethod.GET, RequestMethod.POST})
 	public void logout(){
 		HttpSession session = request.getSession();
