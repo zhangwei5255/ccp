@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import jp.co.drm.base.presentation.controller.BaseController;
 import jp.co.drm.ccp.web.biz.service.LoginService;
 import jp.co.drm.ccp.web.integration.mybatis.dto.LoginDto;
+import jp.co.drm.ccp.web.presentation.domain.LoginDomain;
 
 
 
@@ -27,30 +30,24 @@ public class LoginRestController extends BaseController{
 
 	@Autowired
 	LoginService loginService;
-//
-//	@RequestMapping(value="/next",method = {RequestMethod.GET, RequestMethod.POST})
-//	public LoginDomain next(HttpServletRequest request,@Validated @RequestBody  LoginDomain domain){
-//		LoginDomain retDomain = null;
-//		LoginCriteria criteria = new LoginCriteria();
-//		criteria.setUserpassword(domain.getUserpassword());
-//		Boolean isEmail = EmailValidator.getInstance().isValid(domain.getUserid());
-//		if(isEmail){
-//			criteria.setEmail(domain.getUserid());
-//			retDomain = loginService.loginByEmail(criteria);
-//
-//		}else{
-//			criteria.setUserid(domain.getUserid());
-//			retDomain = loginService.loginByUserId(criteria);
-//		}
-//
-//		return retDomain;
-//
-//	}
 
-	@RequestMapping(value="/error",method = {RequestMethod.GET, RequestMethod.POST})
-	public void testErr() throws Exception{
+	@RequestMapping(value="/next",method = {RequestMethod.GET, RequestMethod.POST})
+	public LoginDomain next(@Validated @RequestBody  LoginDomain domain){
+		LoginDomain retDomain = new LoginDomain();
+	/*	LoginCriteria criteria = new LoginCriteria();
+		criteria.setUserpassword(domain.getUserpassword());
+		Boolean isEmail = EmailValidator.getInstance().isValid(domain.getUserid());
+		if(isEmail){
+			criteria.setEmail(domain.getUserid());
+			retDomain = loginService.loginByEmail(criteria);
 
-		throw new Exception("test");
+		}else{
+			criteria.setUserid(domain.getUserid());
+			retDomain = loginService.loginByUserId(criteria);
+		}*/
+
+		return retDomain;
+
 	}
 
 	@RequestMapping(value="/logout",method = {RequestMethod.GET, RequestMethod.POST})

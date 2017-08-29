@@ -14,9 +14,13 @@
 <script src="js/login.js"></script>
 </head>
 <body>
-	<div class="container">
+	<div id="container" class="container">
 		<form class="form-signin">
 			<h2 class="form-signin-heading">WMS ログイン</h2>
+
+			<div class="errs" data-bind="foreach: {data: dataModel.baseDomain().messages, as: 'msg'}">
+						<div data-bind="html: msg"></div>
+			</div>
 
 			<div class="input-group margin-bottom-sm">
 				<span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
@@ -39,8 +43,19 @@
 				</label>
 			</div>
 
-			<button class="btn btn-lg btn-primary btn-block" type="button">ログイン</button>
+			<button class="btn btn-lg btn-primary btn-block" type="button" data-bind="click: doNext">ログイン</button>
 		</form>
 	</div>
+
+		<script type="text/javascript">
+		$(document).ready(function() {
+			$("#container").hide();
+			var viewModel = new ccp.vm.LoginViewModel();
+			//viewModel.doLoad();
+			viewModel.bind();
+			$("#container").show();
+		});
+	</script>
+
 </body>
 </html>

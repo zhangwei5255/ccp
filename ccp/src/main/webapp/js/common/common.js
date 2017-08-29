@@ -6,17 +6,16 @@ if (typeof Utils === "undefined") {
 	var Utils = {};
 }
 
-
 (function($) {
 	$.extend({
-		getParameter: function getParameter() {
-			/// <summary>
-			/// URLのパラメーターを取得
-			/// </summary>
+		getParameter : function getParameter() {
+			// / <summary>
+			// / URLのパラメーターを取得
+			// / </summary>
 
-			var arg  = new Object;
+			var arg = new Object;
 			var pair = location.search.substring(1).split('&');
-			for(i=0; pair[i]; i++) {
+			for (i = 0; pair[i]; i++) {
 				var kv = pair[i].split('=');
 				arg[kv[0]] = unescape(kv[1]);
 			}
@@ -24,6 +23,28 @@ if (typeof Utils === "undefined") {
 		}
 	});
 })(jQuery);
+
+ccp.model.data.BaseDomain = function() {
+	var self = this;
+	self.messages = ko.observableArray();
+}
+
+ccp.model.data.BaseDomain = function(dataModel) {
+	var self = this;
+	self.messages = ko.observableArray();
+
+	// dataModelがJSデータの場合
+	if(dataModel.baseDomain){
+		self.messages = ko.observable(dataModel.baseDomain.messages);
+		return;
+	}
+
+	if(dataModel.messages){
+		self.messages = ko.observable(dataModel.messages);
+	}
+
+
+}
 
 // JSONにKOオブジェクトを変換
 function toJSON(data) {
@@ -45,7 +66,7 @@ function loadHtml(loadList, callbackFn) {
 	function loadCallBack() {
 		cnt = cnt + 1;
 		if (cnt === loadList.length) {
-			//callbackFnを呼び出す
+			// callbackFnを呼び出す
 			callbackFn();
 		}
 	}
@@ -117,7 +138,7 @@ ccp.vm.ErrorViewModel = function() {
 				ccp.model.ErrorModel.goToPageNotFound();
 			}
 			break;
-		case 401:	//権限なし
+		case 401: // 権限なし
 			ccp.model.ErrorModel.goToVerifyFound();
 			break;
 		case 404:
@@ -126,9 +147,9 @@ ccp.vm.ErrorViewModel = function() {
 		case 408:
 			ccp.model.ErrorModel.goToSessionTimeout();
 			break;
-		/*case 409:
-			ccp.model.ErrorModel.goToConflictError(self.config);
-			break;*/
+		/*
+		 * case 409: ccp.model.ErrorModel.goToConflictError(self.config); break;
+		 */
 		default:
 			ccp.model.ErrorModel.goToSystemError();
 		}
