@@ -18,22 +18,24 @@
 		<form class="form-signin">
 			<h2 class="form-signin-heading">WMS ログイン</h2>
 
-			<div class="errs" data-bind="foreach: {data: dataModel.baseDomain().messages, as: 'msg'}">
+			<!-- ko if: dataModel.baseDomain().messages().length > 0 -->
+			<div class="alert alert-danger" data-bind=" foreach: {data: dataModel.baseDomain().messages, as: 'msg'}" role="alert">
 						<div data-bind="html: msg"></div>
 			</div>
+			<!-- /ko -->
 
 			<div class="input-group margin-bottom-sm">
 				<span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
 				<label for="txtUserId" class="sr-only">ユーザID</label>
 				 <input
-				type="text" id="txtUserId" class="form-control" placeholder="ユーザID"
+				type="text" id="txtUserId" class="form-control" data-bind="value: dataModel.userId" placeholder="ユーザID"
 				autofocus>
 			</div>
 
 			<div class="input-group">
 				<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
 				<label for="txtPwd" class="sr-only">パスワード</label>
-				<input type="password" id="txtPwd" class="form-control"
+				<input type="password" id="txtPwd" data-bind="value: dataModel.pwd" class="form-control"
 					placeholder="パスワード">
 			</div>
 
