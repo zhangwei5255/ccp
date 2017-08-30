@@ -75,5 +75,8 @@ dependencies {
 	// https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils
 	compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.3'
 
+	// https://mvnrepository.com/artifact/javax.inject/javax.inject
+	compile group: 'javax.inject', name: 'javax.inject', version: '1'
+
 
 }

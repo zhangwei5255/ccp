@@ -5,7 +5,7 @@ import jp.co.drm.ccp.web.presentation.domain.LoginDomain;
 
 public interface LoginService {
 
-	 boolean chkLoginInfo(LoginDomain domain);
+	 boolean isExsits(LoginDomain domain);
 
 	 void login(LoginDomain domain);
 

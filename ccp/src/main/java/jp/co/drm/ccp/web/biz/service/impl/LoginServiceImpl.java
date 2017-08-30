@@ -1,15 +1,19 @@
 package jp.co.drm.ccp.web.biz.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import jp.co.drm.ccp.base.integration.mybatis.dao.MstUserDao;
+import jp.co.drm.ccp.base.integration.mybatis.entity.MstUser;
+import jp.co.drm.ccp.base.integration.mybatis.entity.MstUserExample;
 import jp.co.drm.ccp.web.biz.service.LoginService;
-import jp.co.drm.ccp.web.integration.mybatis.dao.LoginDao;
 import jp.co.drm.ccp.web.integration.mybatis.dto.LoginDto;
 import jp.co.drm.ccp.web.presentation.domain.LoginDomain;
 
@@ -23,14 +27,23 @@ public class LoginServiceImpl implements LoginService {
 	@Resource
 	private MstUserDao mstUserDao;
 
-	@Resource
-	private LoginDao loginDao;
+/*	@Resource
+	private LoginDao loginDao;*/
 
 	@Override
-	public boolean chkLoginInfo(LoginDomain domain) {
+	public boolean isExsits(LoginDomain domain) {
 
 		boolean blnRet = false;
 
+		MstUserExample example = new MstUserExample();
+		MstUserExample.Criteria criteria = example.createCriteria();
+		criteria.andUserIdEqualTo(domain.getUserId());
+		criteria.andPwdEqualTo(domain.getPwd());
+
+		List<MstUser> lst = mstUserDao.selectByExample(example);
+		if(CollectionUtils.isNotEmpty(lst)){
+			blnRet = true;
+		}
 
 		return blnRet;
 	}
@@ -46,7 +59,8 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public LoginDto selectUserInfoById(String userid) {
 		// TODO 自動生成されたメソッド・スタブ
-		return loginDao.selectUserInfoById(userid);
+		//return loginDao.selectUserInfoById(userid);
+		return null;
 	}
 
 

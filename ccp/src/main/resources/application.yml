@@ -8,12 +8,14 @@ cpp:
 #指定bean所在包
 #指定映射文件
 mybatis:
-  type-aliases-package: jp.co.tonoyo.longchamp.model
+  type-aliases-package: jp.co.drm.ccp.base.integration.mybatis.entity, jp.co.drm.ccp.web.integration.mybatis.dto
   config-locations: classpath:mybatis/mybatis-config.xml
-  mapper-Locations: classpath:jp/co/drm/ccp/**/integration/mybatis/sqlmap/*.xml
-  #複数の場合
-  # - classpath*:/mybatis/sqls/aaa/**/*.xml
-  # - classpath*:/mybatis/sqls/bbb/**/*.xml
+  mapper-Locations: classpath*:jp/co/drm/ccp/**/integration/mybatis/sqlmap/*.xml
+  #classpath: 該当プロジェクトのclasspath
+  #classpath*: 全てのclasspath「依頼ライブラリJARのclasspathを含む」
+  #mapper-Locations:
+  #   - classpath*:jp/co/drm/ccp/web/integration/mybatis/sqlmap/*.xml
+  #   - classpath*:jp/co/drm/ccp/base/integration/mybatis/sqlmap/*.xml
 
 # spring.profiles.activeにアクティブなプロファイルを指定する
 spring:
