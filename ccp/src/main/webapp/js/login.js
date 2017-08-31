@@ -41,6 +41,24 @@ ccp.vm.LoginViewModel = function() {
 			datatype: 'json',
 			scriptCharset: 'utf-8'
 		}).done(function(response) {
+			// cookieオブジェクトの取得
+			var cookieObj = myCookie.item(myCookie.keys.login);
+			if(self.dataModel.isSave() == true){
+				cookieObj[self.dataModel.userId()] = self.dataModel.pwd();
+				// cookieオブジェクトの設定
+				myCookie.item(myCookie.keys.login, cookieObj);
+			}else{
+		/*		// cookieオブジェクトからパスワードを削除
+				cookieObj[self.dataModel.userId()] = null;*/
+				$.each(cookieObj , function(k, v) {
+					 // localStorageのkeyはkeysのvalueです。
+			 		 if(k === self.dataModel.userId()){
+			 			delete cookieObj[k];
+			 		 }
+				});
+
+				myCookie.item(myCookie.keys.login, cookieObj);
+			}
 
 			Utils.changeViewing("admin/welcome.html");
 

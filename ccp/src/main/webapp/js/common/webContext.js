@@ -6,19 +6,24 @@ ccp.enums.web.myCookie = function(){
 
 	self.item = function(key, val){
 		if(!val){												//getter
+			var ret = {};
 			$.each(self.keys , function(k, v) {
 				 // localStorageのkeyはkeysのvalueです。
 		 		 if(key === v){
-		 			return localStorage.getItem(key);
+		 			 ret = JSON.parse(localStorage.getItem(key));
+		 			 if(!ret){
+		 				ret = {};
+		 			 }
+		 			return ret;
 		 		 }
 			});
 
-			return "";
+			return ret;
 		}else{													//setter
 			$.each(self.keys , function(k, v) {
 				 // localStorageのkeyはkeysのvalueです。
 		 		 if(key === v){
-		 			localStorage.setItem(key, val);
+		 			localStorage.setItem(key, ko.toJSON(val));
 		 		 }
 			});
 		}
