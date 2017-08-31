@@ -20,6 +20,7 @@ import jp.co.drm.ccp.web.biz.service.LoginService;
 import jp.co.drm.ccp.web.integration.mybatis.dto.LoginDto;
 import jp.co.drm.ccp.web.presentation.domain.LoginDomain;
 import jp.co.drm.ccp.web.presentation.validator.LoginValidator;
+import jp.co.drm.cpp.web.common.SessionKey;
 
 @RestController
 @RequestMapping(value = "/login")
@@ -41,21 +42,10 @@ public class LoginRestController extends BaseController {
 	}
 
 	@RequestMapping(value = "/next", method = { RequestMethod.GET, RequestMethod.POST })
-	public LoginDomain next(@Validated @RequestBody LoginDomain domain) {
-		LoginDomain retDomain = new LoginDomain();
-		/*
-		 * LoginCriteria criteria = new LoginCriteria();
-		 * criteria.setUserpassword(domain.getUserpassword()); Boolean isEmail =
-		 * EmailValidator.getInstance().isValid(domain.getUserid());
-		 * if(isEmail){ criteria.setEmail(domain.getUserid()); retDomain =
-		 * loginService.loginByEmail(criteria);
-		 *
-		 * }else{ criteria.setUserid(domain.getUserid()); retDomain =
-		 * loginService.loginByUserId(criteria); }
-		 */
-
-		return retDomain;
-
+	public void next(@Validated @RequestBody LoginDomain domain) {
+		LoginDto dto = loginService.selectUserInfoById(domain.getUserId());
+		HttpSession session = request.getSession();
+		session.setAttribute(SessionKey.LOGIN.toString(), dto);
 	}
 
 	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })

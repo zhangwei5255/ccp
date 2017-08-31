@@ -24,6 +24,21 @@ if (typeof Utils === "undefined") {
 	});
 })(jQuery);
 
+
+ccp.enums.color = function() {
+	var values = {
+	         BLACK: '#000000',
+	         RED: '#FF0000',
+	         GREEN: '#00FF00'
+	    }
+
+	    return values;
+};
+
+//使い方①：ccp.enums.color().BLACK
+//使い方②
+var color = new ccp.enums.color();
+
 ccp.model.data.BaseDomain = function() {
 	var self = this;
 	self.messages = ko.observableArray();

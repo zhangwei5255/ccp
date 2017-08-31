@@ -2,6 +2,7 @@ ccp.model.data.LoginModel = function(dataModel) {
 	var self = this;
 	self.userId = ko.observable(dataModel.userId);
 	self.pwd = ko.observable(dataModel.pwd);
+	self.isSave = ko.observable(false);		//JSのみ使う
 	//self.messages =  ko.observableArray(dataModel.messages);
 	self.baseDomain = ko.observable(new ccp.model.data.BaseDomain(dataModel));
 }
@@ -41,7 +42,7 @@ ccp.vm.LoginViewModel = function() {
 			scriptCharset: 'utf-8'
 		}).done(function(response) {
 
-			Utils.changeViewing("front/topMenu.html");
+			Utils.changeViewing("admin/welcome.html");
 
 		}).fail(function(xhr, exception) {
 			self.handler.handle(xhr, exception);
