@@ -59,7 +59,6 @@
 		$(document).ready(function() {
 			$("#container").hide();
 
-
 			var loadObj = [ {
 				id : '#footer',
 				url : '../component/footer.html'
@@ -70,15 +69,18 @@
 				//viewModel.doLoad();
 				viewModel.bind();
 				$("#container").show();
+
+				 /* unload */
+				 $(window).on("unload",function(){
+					 myRequest.save(myRequest.keys.login, "userId : " + viewModel.dataModel.userId());
+					 //myCookie.item(myCookie.keys.login, "myCookietest");
+					 console.log('次画面へのリクエストが保存された。');
+			 	});
+
+
 			});
 		});
 
-	 /* unload */
-	 $(window).on("unload",function(){
-		 myRequest.save(myRequest.keys.login, "test");
-		 //myCookie.item(myCookie.keys.login, "myCookietest");
-		 console.log('次画面へのリクエストが保存された。');
- 	});
 
 
 

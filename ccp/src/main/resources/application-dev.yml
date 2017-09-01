@@ -33,10 +33,6 @@ spring:
 #logging:
 #  level:
 #    jdbc: OFF
-#logging:
-#  level:
-#    jdbc:
-#      sqltiming: ERROR
 logging:
   level:
     jdbc:
