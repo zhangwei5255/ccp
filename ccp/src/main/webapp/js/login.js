@@ -2,7 +2,7 @@ ccp.model.data.LoginModel = function(dataModel) {
 	var self = this;
 	self.userId = ko.observable(dataModel.userId);
 	self.pwd = ko.observable(dataModel.pwd);
-	self.isSave = ko.observable(false);		//JSのみ使う
+	self.isSave = ko.observable(true);		//JSのみ使う
 	//self.messages =  ko.observableArray(dataModel.messages);
 	self.baseDomain = ko.observable(new ccp.model.data.BaseDomain(dataModel));
 }
@@ -20,11 +20,23 @@ ccp.vm.LoginViewModel = function() {
 	self.messages = ko.observableArray();
 
 	self.processing = {
+		onSetPwd : false,
 		doNext : false
 	};
 
 	self.bind = function() {
 		ko.applyBindings(self); // This makes Knockout get to work
+	};
+
+	self.onSetPwd = function(){
+		if (self.processing.onSetPwd) {
+			return;
+		}
+
+		var map = myCookie.item(myCookie.keys.login);
+		self.dataModel.pwd(map[self.dataModel.userId()]);
+
+		self.processing.onSetPwd = false;
 	};
 
 	self.doNext = function() {

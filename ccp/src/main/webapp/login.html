@@ -7,7 +7,6 @@
 <link href="css/lib/bootstrap.min.css" rel="stylesheet">
 <link href="css/common.css" rel="stylesheet">
 <link href="css/admin/login.css" rel="stylesheet">
-<script src="js/lib/jquery-3.2.1.js"></script>
 <script src="js/lib/jquery-3.2.1.min.js"></script>
 <script src="js/lib/knockout-3.4.2.js"></script>
 <script src="js/common/namespace.js"></script>
@@ -30,7 +29,7 @@
 				<span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
 				<label for="txtUserId" class="sr-only">ユーザID</label>
 				 <input
-				type="text" id="txtUserId" class="form-control" data-bind="value: dataModel.userId" placeholder="ユーザID"
+				type="text" id="txtUserId" class="form-control" data-bind="value: dataModel.userId, event:{blur: onSetPwd }" placeholder="ユーザID"
 				autofocus>
 			</div>
 
