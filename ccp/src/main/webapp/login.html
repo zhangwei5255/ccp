@@ -9,6 +9,8 @@
 <link href="css/admin/login.css" rel="stylesheet">
 <script src="js/lib/jquery-3.2.1.min.js"></script>
 <script src="js/lib/knockout-3.4.2.js"></script>
+<script src="js/lib/jquery.qrcode.min.js"></script>
+<script src="js/gVerify.js"></script>
 <script src="js/common/namespace.js"></script>
 <script src="js/common/common.js"></script>
 <script src="js/common/webContext.js"></script>
@@ -29,16 +31,27 @@
 				<span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
 				<label for="txtUserId" class="sr-only">ユーザID</label>
 				 <input
-				type="text" id="txtUserId" class="form-control" data-bind="value: dataModel.userId, event:{blur: onSetPwd }" placeholder="ユーザID"
-				autofocus>
+				type="text" id="txtUserId" class="form-control" data-bind="value: dataModel.userId, event:{blur: onBlurUserId }" placeholder="ユーザID"
+				autofocus />
 			</div>
 
 			<div class="input-group">
 				<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
 				<label for="txtPwd" class="sr-only">パスワード</label>
-				<input type="password" id="txtPwd" data-bind="value: dataModel.pwd" class="form-control"
-					placeholder="パスワード">
+				<input type="password" id="txtPwd" data-bind="value: dataModel.pwd, event:{blur: onBlurPwd } " class="form-control"
+					placeholder="パスワード" />
 			</div>
+
+			<div id="v_container" class="input-group">
+			</div>
+
+			<div  class="input-group">
+				<span class="input-group-addon"><i data-bind="css: dataModel.captchaCss" aria-hidden="true"></i></span>
+				<label id="txtCaptcha" class="sr-only">キャプチャ</label>
+				<input type="text" id="txtCaptcha" class="form-control" data-bind="value: dataModel.vervifyCode,  event:{blur: onValidate }"
+				placeholder="上の認証コードをご入力ください。" />
+			</div>
+
 
 			<div class="checkbox">
 				<label> <input type="checkbox" data-bind="checked: dataModel.isSave" value="remember-me">
@@ -55,6 +68,7 @@
 
 
 		<script type="text/javascript">
+
 		$(document).ready(function() {
 			$("#container").hide();
 

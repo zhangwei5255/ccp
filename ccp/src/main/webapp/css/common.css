@@ -1,3 +1,15 @@
 .hide {
     display: none;
 }
+
+.input-group-addon .fa-6{
+	font-size: 1.5em;
+}
+
+.input-group-addon .ng{
+	color: red;
+}
+
+.input-group-addon .ok{
+	color: blue;
+}
