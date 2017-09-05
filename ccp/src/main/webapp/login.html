@@ -8,6 +8,8 @@
 <link href="css/common.css" rel="stylesheet">
 <link href="css/admin/login.css" rel="stylesheet">
 <script src="js/lib/jquery-3.2.1.min.js"></script>
+<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+<script src="js/lib/bootstrap.min.js"></script>
 <script src="js/lib/knockout-3.4.2.js"></script>
 <script src="js/lib/jquery.qrcode.min.js"></script>
 <script src="js/gVerify.js"></script>
@@ -20,6 +22,15 @@
 	<div id="container" class="container hide">
 		<form class="form-signin">
 			<h2 class="form-signin-heading">WMS ログイン</h2>
+
+			<div class="dropdown form-signin-heading">
+  				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    				WMS ログイン
+  				</button>
+  				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    				<div  id="qrCd" class="px-2"></div>
+  				</div>
+			</div>
 
 			<!-- ko if: dataModel.baseDomain().messages().length > 0 -->
 			<div class="alert alert-danger" data-bind=" foreach: {data: dataModel.baseDomain().messages, as: 'msg'}" role="alert">
@@ -42,16 +53,17 @@
 					placeholder="パスワード" />
 			</div>
 
-			<div id="v_container" class="input-group">
-			</div>
+			<div id="divCaptcha" class="hide">
+				<div id="v_container" class="input-group">
+				</div>
 
-			<div  class="input-group">
-				<span class="input-group-addon"><i data-bind="css: dataModel.captchaCss" aria-hidden="true"></i></span>
-				<label id="txtCaptcha" class="sr-only">キャプチャ</label>
-				<input type="text" id="txtCaptcha" class="form-control" data-bind="value: dataModel.vervifyCode,  event:{blur: onValidate }"
-				placeholder="上の認証コードをご入力ください。" />
+				<div  class="input-group">
+					<span class="input-group-addon"><i data-bind="css: dataModel.captchaCss" aria-hidden="true"></i></span>
+					<label id="txtCaptcha" class="sr-only">キャプチャ</label>
+					<input type="text" id="txtCaptcha" class="form-control" data-bind="value: dataModel.vervifyCode,  event:{blur: onValidate }"
+					placeholder="上の認証コードを入力" />
+				</div>
 			</div>
-
 
 			<div class="checkbox">
 				<label> <input type="checkbox" data-bind="checked: dataModel.isSave" value="remember-me">
@@ -71,6 +83,9 @@
 
 		$(document).ready(function() {
 			$("#container").hide();
+
+			// jQuery('#qrCd').qrcode({width:150,height: 150,text: window.location.href});
+			 jQuery('#qrCd').qrcode({width:150,height: 150,text: 'www.googele.co.jp'});
 
 			var loadObj = [ {
 				id : '#footer',

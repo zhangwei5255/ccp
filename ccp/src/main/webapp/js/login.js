@@ -50,6 +50,7 @@ ccp.vm.LoginViewModel = function() {
 		}
 
 
+		$("#divCaptcha").show();
 		self.processing.onBlurPwd = false;
 	};
 
