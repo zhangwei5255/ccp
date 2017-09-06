@@ -13,3 +13,11 @@
 .input-group-addon .ok{
 	color: blue;
 }
+
+/*! bootstrap.ccsを上書き*/
+.btn-secondary {
+  color: #292b2c;
+  background-color: #eee;
+  border-color: #ccc;
+  font-weight:bold;
+}

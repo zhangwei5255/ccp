@@ -21,7 +21,7 @@
 <body>
 	<div id="container" class="container hide">
 		<form class="form-signin">
-			<h2 class="form-signin-heading">WMS ログイン</h2>
+			<!-- <h2 class="form-signin-heading">WMS ログイン</h2> -->
 
 			<div class="dropdown form-signin-heading">
   				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -84,8 +84,8 @@
 		$(document).ready(function() {
 			$("#container").hide();
 
-			// jQuery('#qrCd').qrcode({width:150,height: 150,text: window.location.href});
-			 jQuery('#qrCd').qrcode({width:150,height: 150,text: 'www.googele.co.jp'});
+			 jQuery('#qrCd').qrcode({width:150,height: 150,text: window.location.href});
+			// jQuery('#qrCd').qrcode({width:150,height: 150,text: 'www.googele.co.jp'});
 
 			var loadObj = [ {
 				id : '#footer',
