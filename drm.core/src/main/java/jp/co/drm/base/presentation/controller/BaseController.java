@@ -19,10 +19,11 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import jp.co.drm.util.ConstVals;
 import jp.co.drm.util.MsgUtils;
 
 public abstract class BaseController {
+
+	public static final String STR_SPLIT_DOT = ".";
 
 	@Autowired
 	Properties itemProperties;
@@ -48,7 +49,7 @@ public abstract class BaseController {
 
 		for (FieldError err : bindingResult.getFieldErrors()) {
 			// KEY
-			String key = err.getObjectName() + ConstVals.STR_SPLIT_DOT + err.getField();
+			String key = err.getObjectName() + STR_SPLIT_DOT + err.getField();
 
 			if (mapMsg.keySet().contains(key)) {
 				continue;

@@ -13,6 +13,13 @@ public class CcpSpringServletContextConfig {
 	}*/
 
 
+/*	@Bean
+	public ErrorPageRegistrar errorPageRegistrar(){
+	    return new CcpErrorPageRegistrar();
+	}
+*/
+
+
 
 
 }

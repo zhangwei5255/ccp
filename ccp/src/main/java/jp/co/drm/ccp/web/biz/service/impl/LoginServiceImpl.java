@@ -60,7 +60,7 @@ public class LoginServiceImpl implements LoginService {
 	public LoginDto selectUserInfoById(String userid) {
 		// TODO 自動生成されたメソッド・スタブ
 		//return loginDao.selectUserInfoById(userid);
-		return null;
+		return new LoginDto();
 	}
 
 

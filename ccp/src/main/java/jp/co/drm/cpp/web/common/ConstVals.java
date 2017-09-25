@@ -1,14 +1,10 @@
-package jp.co.drm.util;
+package jp.co.drm.cpp.web.common;
 
 public class ConstVals {
 
 	public static final String STR_SPLIT_DOT = ".";
 
 	public static final String USER_MST_PRE = "U";
-
-	public static final String SESSION_LOGIN_USER_INFO = "SESSION_LOGIN_USER_INFO";
-
-	public static final String SESSION_TOP_MENU_ALL_CLOTH_INFO = "SESSION_TOP_MENU_ALL_CLOTH_INFO";
 
 	public static final int PAGE_SIZE = 18;
 

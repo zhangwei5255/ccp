@@ -45,7 +45,7 @@ public class LoginRestController extends BaseController {
 	public void next(@Validated @RequestBody LoginDomain domain) {
 		LoginDto dto = loginService.selectUserInfoById(domain.getUserId());
 		HttpSession session = request.getSession();
-		session.setAttribute(SessionKey.LOGIN.toString(), dto);
+		session.setAttribute(SessionKey.LOGIN.value(), dto);
 	}
 
 	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
