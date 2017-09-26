@@ -26,25 +26,25 @@ public class CcpSpringServletContextConfig {
 
 	@Bean
 	public MappedInterceptor interceptor() {
-
-		// .excludePathPatterns("/"
-		// ,""
-		// ,"/login/**"
-		// ,"/login.html"
-		// ,"/favicon.ico" //test
-		// ,"/component/**"
-		// ,"/err/**"
-		// ,"/js/**"
-		// ,"/img/**"
-		// ,"/images/**"
-		// ,"/resources/**"
 		String[] includePatterns = new String[] { "/**" };
 		String[] excludePatterns = new String[] {  "/",
 				"/login/**", "/login.html", "/component/**", "/css/**",
 				"/err/**", "/js/**",
 				//"/favicon.ico",
 				"/img/**", "/images/**", "/resources/**"};
+		// SPRING4.0以降
 		return new MappedInterceptor(includePatterns, excludePatterns, loginRequiredInterceptor());
 	}
+
+
+/*	@Bean
+    @Primary
+    public ProxyFactoryBean testProxyFactoryBean() {
+        ProxyFactoryBean testProxyFactoryBean = new ProxyFactoryBean();
+        testProxyFactoryBean.setTarget();
+        testProxyFactoryBean.setInterceptorNames("testMethodInterceptor");
+        return testProxyFactoryBean;
+    }*/
+
 
 }
