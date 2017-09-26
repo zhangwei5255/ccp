@@ -9,7 +9,7 @@ mail:
     addr: xxoo@xxoo.com
 spring:
   datasource:
-    url: jdbc:log4jdbc:mysql://192.168.81.18:3308/wms?useSSL=false
+    url: jdbc:log4jdbc:mysql://192.168.81.31:3308/wms?useSSL=false
     driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     #username: root   rootユーザ:リモート権限無し
     username: zhangw
@@ -18,13 +18,13 @@ spring:
     favicon:
       enabled: false
   rabbitmq:
-    host: 192.168.81.18
+    host: 192.168.81.31
     port: 5672
     username: test
     password: test
 
   mail:
-    host: 192.168.81.18
+    host: 192.168.81.31
     port: 25
     username: xxoo@xxoo.com
     password: xxoo
@@ -33,7 +33,6 @@ spring:
 #logging:
 #  level:
 #    jdbc: OFF
-
 
 logging:
   level:

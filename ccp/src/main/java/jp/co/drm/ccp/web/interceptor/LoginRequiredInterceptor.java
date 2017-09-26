@@ -5,13 +5,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import jp.co.drm.ccp.web.exception.HttpSessionRequiredException;
 import jp.co.drm.cpp.web.common.SessionKey;
 
-
+@Component
 public class LoginRequiredInterceptor extends HandlerInterceptorAdapter {
 	private  final Logger logger = LogManager.getLogger(this.getClass());
 	private final String LOGIN_ERR_HTML = "/err/loginRequired.html";

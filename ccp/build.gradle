@@ -60,7 +60,8 @@ dependencies {
 
 
   testCompile("org.springframework.boot:spring-boot-starter-test")
-
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '1.5.4.RELEASE'
   // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-amqp
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-amqp', version: '1.5.4.RELEASE'
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
