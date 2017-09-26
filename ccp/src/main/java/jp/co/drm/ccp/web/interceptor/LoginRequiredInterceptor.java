@@ -24,7 +24,7 @@ public class LoginRequiredInterceptor extends HandlerInterceptorAdapter {
 		if(request.getRequestedSessionId() != null && !request.isRequestedSessionIdValid()){
 			throw new HttpSessionRequiredException();
 		}
-		
+
 		Object userData = request.getSession().getAttribute(SessionKey.LOGIN.value());
 
 
@@ -41,6 +41,7 @@ public class LoginRequiredInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
+		//modelAndView.setViewName("/errorpage/error");
 	}
 
 	@Override

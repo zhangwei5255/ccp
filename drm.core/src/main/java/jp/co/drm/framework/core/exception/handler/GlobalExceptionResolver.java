@@ -35,7 +35,7 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
 
 			if(hsce.getStatusCode() == HttpStatus.REQUEST_TIMEOUT){
 				 logger.info("セッションタイムアウト画面へ遷移します。");
-				 mav.setViewName("/err/sesson_timeout.html");
+				 mav.setViewName("/err/sessonTimeout.html");
 			}
 			return mav;
 		}
