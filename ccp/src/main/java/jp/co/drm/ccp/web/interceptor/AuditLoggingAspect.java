@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -63,19 +65,20 @@ public class AuditLoggingAspect {
 	public void after(JoinPoint jp) {
 		System.out.println("方法最后执行.....");
 	}
-//
-//	// 环绕通知,环绕增强，相当于MethodInterceptor
-//	@Around("servicePointcut()")
-//	public Object arround(JoinPoint jp, ProceedingJoinPoint pjp) throws Throwable {
-//
-//		beforeArround(jp);
-//
-//		Object ret = pjp.proceed();
-//		afterArround(jp);
-//
-//		return ret;
-//
-//	}
+
+	// 环绕通知,环绕增强，相当于MethodInterceptor
+	@Around("servicePointcut()")
+	public Object arround(ProceedingJoinPoint pjp) throws Throwable {
+
+
+		beforeArround(pjp);
+
+		Object ret = pjp.proceed();
+		afterArround(pjp);
+
+		return ret;
+
+	}
 
 	private void beforeArround(JoinPoint jp)  {
 		String clsNm = jp.getSignature().getDeclaringTypeName();
