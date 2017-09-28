@@ -228,15 +228,15 @@ ccp.vm.ErrorViewModel = function() {
 
 ccp.model.ErrorModel = {
 	goToVerifyFound : function() {
-		Utils.changeViewing(ROOT_NAME + "/err/access_err.html");
+		Utils.changeViewing(ROOT_NAME + "/err/unauthorized.html");
 	},
 	goToPageNotFound : function() {
-		Utils.changeViewing(ROOT_NAME + "/err/page_err.html");
+		Utils.changeViewing(ROOT_NAME + "/err/notFound.html");
 	},
 	goToSystemError : function() {
-		Utils.changeViewing(ROOT_NAME + "/err/sys_err.html");
+		Utils.changeViewing(ROOT_NAME + "/err/sysErr.html");
 	},
 	goToSessionTimeout : function() {
-		Utils.changeViewing(ROOT_NAME + "/err/sesson_timeout.html");
+		Utils.changeViewing(ROOT_NAME + "/err/sessonTimeout.html");
 	}
 };
