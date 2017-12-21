@@ -39,6 +39,7 @@ public class ExcelVsProController extends BaseController {
 
 	final String STG0_HOME = "file:///C:/work/zw/SVN/branches/release_2017_WOS_MENTE_1121/gwos-conf/stg0.misumi-ec.com/";
 	final String STG1_HOME = "file:///C:/work/zw/SVN/branches/release_2017_WOS_MENTE_1121/gwos-conf/stg1.misumi-ec.com/";
+	final String STG3_HOME = "file:///C:/work/zw/SVN/branches/release_2017_WOS_MENTE_1121/gwos-conf/stg3.misumi-ec.com/";
 	final String PRO0_HOME = "file:///C:/work/zw/SVN/branches/release_2017_WOS_MENTE_1121/gwos-conf/prd0.misumi-ec.com/";
 	final String PRO1_HOME = "file:///C:/work/zw/SVN/branches/release_2017_WOS_MENTE_1121/gwos-conf/prd1.misumi-ec.com/";
 
@@ -54,7 +55,8 @@ public class ExcelVsProController extends BaseController {
 			STG0_HOME + "TIW/user/gwos_tw.properties",
 			STG0_HOME + "USA/user/gwos_us.properties",
 			STG0_HOME + "VNM/user/gwos_vn.properties",
-			STG1_HOME + "MJP/user/gwos_jp.properties"
+			STG1_HOME + "MJP/user/gwos_jp.properties",
+			STG3_HOME + "MJP/user/gwos_jp.properties"
 	};
 
 	final String[] proNames = {
@@ -69,7 +71,8 @@ public class ExcelVsProController extends BaseController {
 			PRO0_HOME + "TIW/user/gwos_tw.properties",
 			PRO0_HOME + "USA/user/gwos_us.properties",
 			PRO0_HOME + "VNM/user/gwos_vn.properties",
-			PRO1_HOME + "MJP/user/gwos_jp.properties"
+			PRO1_HOME + "MJP/user/gwos_jp.properties",
+			PRO1_HOME + "MJP/user/gwos_jp.properties"   // STG3比較するため
 	};
 
 
