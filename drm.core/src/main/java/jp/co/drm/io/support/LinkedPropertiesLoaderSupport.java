@@ -1,8 +1,9 @@
 package jp.co.drm.io.support;
 
+import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Properties;
 
@@ -122,8 +123,9 @@ public class LinkedPropertiesLoaderSupport {
 	/**
 	 * Return a merged Properties instance containing both the loaded properties
 	 * and properties set on this FactoryBean.
+	 * @throws Exception
 	 */
-	protected Properties mergeProperties() throws IOException {
+	protected Properties mergeProperties() throws Exception {
 		Properties result = new LinkedProperties();
 
 		if (this.localOverride) {
@@ -152,11 +154,10 @@ public class LinkedPropertiesLoaderSupport {
 	 *
 	 * @param props
 	 *            the Properties instance to load into
-	 * @throws IOException
-	 *             in case of I/O errors
+	 * @throws Exception
 	 * @see #setLocations
 	 */
-	protected void loadProperties(Properties props) throws IOException {
+	protected void loadProperties(Properties props) throws Exception {
 		if (this.locations != null) {
 			for (Resource location : this.locations) {
 				if (logger.isDebugEnabled()) {
@@ -178,7 +179,7 @@ public class LinkedPropertiesLoaderSupport {
 	}
 
 	private void fillProperties(Properties props, EncodedResource resource, PropertiesPersister persister)
-			throws IOException {
+			throws Exception {
 
 		InputStream stream = null;
 		Reader reader = null;
@@ -189,7 +190,17 @@ public class LinkedPropertiesLoaderSupport {
 				persister.loadFromXml(props, stream);
 			} else if (resource.requiresReader()) {
 				reader = resource.getReader();
+
+				// add by zhangwei 「UTF8ＢＯＭ付き」の対応 start
+				if(this.fileEncoding.toUpperCase().equals("UTF-8") || this.fileEncoding.toUpperCase().equals("UTF8")) {
+					stream = skipUTF8BOM(resource.getInputStream(), this.fileEncoding);
+					reader = new InputStreamReader(stream, this.fileEncoding);
+				}
+				// add by zhangwei 「UTF8ＢＯＭ付き」の対応 end
+
 				persister.load(props, reader);
+
+
 			} else {
 				stream = resource.getInputStream();
 				persister.load(props, stream);
@@ -203,5 +214,28 @@ public class LinkedPropertiesLoaderSupport {
 			}
 		}
 	}
+
+	/** UTF-8のBOMをスキップする */
+	   public static InputStream skipUTF8BOM(
+	                        InputStream is
+	                       ,String      charSet
+	                        )throws Exception{
+	      if( !charSet.toUpperCase().equals("UTF-8")  && !charSet.toUpperCase().equals("UTF8") ) return is;
+	      if( !is.markSupported() ){
+	         // マーク機能が無い場合BufferedInputStreamを被せる
+	         is= new BufferedInputStream(is);
+	         }
+	      is.mark(3); // 先頭にマークを付ける
+	      if( is.available()>=3 ){
+	         byte b[]={0,0,0};
+	         is.read(b,0,3);
+	         if( b[0]!=(byte)0xEF ||
+	             b[1]!=(byte)0xBB ||
+	             b[2]!=(byte)0xBF ){
+	            is.reset();// BOMでない場合は先頭まで巻き戻す
+	            }
+	         }
+	      return is;
+	      }
 
 }

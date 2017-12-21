@@ -1,6 +1,5 @@
 package jp.co.drm.beans.factory.config;
 
-import java.io.IOException;
 import java.util.Properties;
 
 import org.springframework.beans.factory.FactoryBean;
@@ -52,14 +51,14 @@ public class LinkedPropertiesFactoryBean extends LinkedPropertiesLoaderSupport
 	}
 
 	@Override
-	public final void afterPropertiesSet() throws IOException {
+	public final void afterPropertiesSet() throws Exception {
 		if (this.singleton) {
 			this.singletonInstance = createProperties();
 		}
 	}
 
 	@Override
-	public final Properties getObject() throws IOException {
+	public final Properties getObject() throws Exception {
 		if (this.singleton) {
 			return this.singletonInstance;
 		} else {
@@ -81,11 +80,10 @@ public class LinkedPropertiesFactoryBean extends LinkedPropertiesLoaderSupport
 	 * singleton; else, on each {@link #getObject()} call.
 	 *
 	 * @return the object returned by this factory
-	 * @throws IOException
-	 *             if an exception occurred during properties loading
+	 * @throws Exception
 	 * @see #mergeProperties()
 	 */
-	protected Properties createProperties() throws IOException {
+	protected Properties createProperties() throws Exception {
 		return mergeProperties();
 	}
 

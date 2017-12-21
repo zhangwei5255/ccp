@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>業務・環境分割_4537</title>
+<link rel="stylesheet" href="../css/lib/fontawesome/css/font-awesome.css">
+<link href="../css/lib/bootstrap.min.css" rel="stylesheet">
+<link href="../css/common.css" rel="stylesheet">
+<link href="../css/admin/login.css" rel="stylesheet">
+<script src="../js/lib/jquery-3.2.1.min.js"></script>
+<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+<script src="../js/lib/bootstrap.min.js"></script>
+<script src="../js/lib/knockout-3.4.2.js"></script>
+<script src="../js/common/namespace.js"></script>
+<script src="../js/common/common.js"></script>
+<script src="../js/common/webContext.js"></script>
+<script src="../js/proVsStg.js"></script>
+</head>
+<body>
+	<div id="container" class="container hide">
+	<form class="form-signin">
+						<input type="file" id="fileExcel"  data-bind="event: {change: function(){doExcelChange($element.files[0])}}"
+							class="input-file" accept=".properties" >
+
+							<input type="file" id="fileExcel"  data-bind="event: {change: function(){doExcelChange($element.files[0])}}"
+							class="input-file" accept=".properties" >
+
+<button class="btn btn-lg btn-primary btn-block" type="button" data-bind="click: doCmp">比較</button>
+</form>
+
+		<div id="footer" class="text-right"></div>
+	</div>
+
+
+
+		<script type="text/javascript">
+
+		$(document).ready(function() {
+			$("#container").hide();
+
+			$("#container").show();
+
+
+			var loadObj = [ {
+				id : '#footer',
+				url : '../component/footer.html'
+			} ];
+			loadHtml(loadObj, function() {
+
+				var viewModel = new ccp.vm.ProVsStgViewModel();
+				//viewModel.doLoad();
+				viewModel.bind();
+
+
+				$("#container").show();
+
+
+
+
+			});
+		});
+
+
+
+
+	</script>
+
+</body>
+</html>

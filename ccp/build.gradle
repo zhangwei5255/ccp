@@ -79,5 +79,9 @@ dependencies {
 	// https://mvnrepository.com/artifact/javax.inject/javax.inject
 	compile group: 'javax.inject', name: 'javax.inject', version: '1'
 
+	// https://mvnrepository.com/artifact/com.orangesignal/orangesignal-csv
+compile group: 'com.orangesignal', name: 'orangesignal-csv', version: '2.2.1'
+
+
 
 }
