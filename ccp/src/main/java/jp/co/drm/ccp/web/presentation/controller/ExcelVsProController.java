@@ -272,11 +272,11 @@ public class ExcelVsProController extends BaseController {
 				domain.setVal2(pro.getProperty(key + ""));
 				map.put(key + "", domain);
 				String msg = String.format("Diff: key = %s , stg = %s, pro = %s", key, domain.getVal1(), domain.getVal2());
-				logger.info(msg);
+				//logger.info(msg);
 			}
 		}
 
-		logger.info("-----------------------------------------------------------------------------------");
+		//logger.info("-----------------------------------------------------------------------------------");
 
 		return map;
 
