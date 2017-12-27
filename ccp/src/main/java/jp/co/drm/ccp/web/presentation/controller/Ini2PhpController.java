@@ -133,8 +133,10 @@ public class Ini2PhpController extends BaseController {
 		}
 
 		if (line.endsWith("=")) {
-			retArr[0] = line.substring(0, line.length() - 1);
+			String tmp = line.substring(0, line.length() - 1);
+			retArr[0] = String.format(CONST_FMT,tmp ,"" );
 			retArr[1] = ""; // 最後に「,」が出力されるため
+
 			return retArr;
 		}
 
@@ -206,6 +208,8 @@ public class Ini2PhpController extends BaseController {
 				continue;
 			}
 
+		    key = key.split("=>")[0].trim().replace("\"", "");
+
 			if(mapEnv.containsKey(key)) {//環境の場合、
 				dataEnv.addAll(dataTmp);
 			}else { //業務の場合
@@ -226,6 +230,7 @@ public class Ini2PhpController extends BaseController {
 		file = new File(csvEnv);
 		// 出力
 		Csv.save(dataEnv, file, cfg, new StringArrayListHandler());
+
 	}
 
 
