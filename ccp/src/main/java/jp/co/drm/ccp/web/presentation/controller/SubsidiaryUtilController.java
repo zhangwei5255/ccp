@@ -22,9 +22,9 @@ import jp.misumi.wos.util.SubsidiaryUtil;
 import jp.misumi.wos.util.SubsidiaryUtil.NumberType;
 
 @RestController
-@RequestMapping(value = "/Sublidiatory")
+@RequestMapping(value = "/SubsidiaryUtil")
 // public class LoginRestController extends BaseController{
-public class SublidiatoryController extends BaseController {
+public class SubsidiaryUtilController extends BaseController {
 
 	private final Logger logger = LogManager.getLogger(this.getClass());
 
@@ -69,6 +69,8 @@ public class SublidiatoryController extends BaseController {
 		return SubsidiaryUtil.getFormattedNumber(input, nmType);
 
 	}
+
+
 
 
 }

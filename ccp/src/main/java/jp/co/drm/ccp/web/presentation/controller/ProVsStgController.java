@@ -45,11 +45,11 @@ public class ProVsStgController extends BaseController {
 
 	final String HOME_PATH = "C:/Users/user/git/ccp/ccp/src/main/resources/csv/";
 
-	final String STG0_HOME = "file:///C:/work/zw/SVN/branches/release_2017_WOS_MENTE_1121/gwos-conf/stg0.misumi-ec.com/";
-	final String STG1_HOME = "file:///C:/work/zw/SVN/branches/release_2017_WOS_MENTE_1121/gwos-conf/stg1.misumi-ec.com/";
-	final String STG3_HOME = "file:///C:/work/zw/SVN/branches/release_2017_WOS_MENTE_1121/gwos-conf/stg3.misumi-ec.com/";
-	final String PRO0_HOME = "file:///C:/work/zw/SVN/branches/release_2017_WOS_MENTE_1121/gwos-conf/prd0.misumi-ec.com/";
-	final String PRO1_HOME = "file:///C:/work/zw/SVN/branches/release_2017_WOS_MENTE_1121/gwos-conf/prd1.misumi-ec.com/";
+	final String STG0_HOME = "file:///C:/work/zw/SVN/branches/release_2018_WOS_0118_EC7.0/gwos-conf/stg0.misumi-ec.com/";
+	final String STG1_HOME = "file:///C:/work/zw/SVN/branches/release_2018_WOS_0118_EC7.0/gwos-conf/stg1.misumi-ec.com/";
+	final String STG3_HOME = "file:///C:/work/zw/SVN/branches/release_2018_WOS_0118_EC7.0/gwos-conf/stg3.misumi-ec.com/";
+	final String PRO0_HOME = "file:///C:/work/zw/SVN/branches/release_2018_WOS_0118_EC7.0/gwos-conf/prd0.misumi-ec.com/";
+	final String PRO1_HOME = "file:///C:/work/zw/SVN/branches/release_2018_WOS_0118_EC7.0/gwos-conf/prd1.misumi-ec.com/";
 
 	final String[] stgNames = {
 			STG0_HOME + "CHN/user/gwos_cn.properties",
@@ -95,7 +95,7 @@ public class ProVsStgController extends BaseController {
 
 		// 最後は重複gwos_jp.properties
 		for (int i = 0; i < proNames.length - 1; i++) {
-			String[] item = new String[3];
+			String[] item = new String[2];
 			String proName = proNames[i];
 
 			Properties proProperties = getPropertiesByName(proName);
