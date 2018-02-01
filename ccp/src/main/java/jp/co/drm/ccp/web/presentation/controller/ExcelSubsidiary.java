@@ -62,9 +62,23 @@ public class ExcelSubsidiary extends BaseController {
 	@Autowired
 	private HttpServletRequest request;
 
-	final String CSV_NAME = "C:/Users/user/git/ccp/ccp/src/main/resources/csv/Subsidiary.csv";
+//	final String CSV_NAME = "C:/Users/user/git/ccp/ccp/src/main/resources/csv/Subsidiary.csv";
+//
+//	final String CSV_NAME_RET = "C:/Users/user/git/ccp/ccp/src/main/resources/csv/SubsidiaryRet.csv";
 
-	final String CSV_NAME_RET = "C:/Users/user/git/ccp/ccp/src/main/resources/csv/SubsidiaryRet.csv";
+
+//	ClassLoader cl = Thread.currentThread().getContextClassLoader();
+//	URL url = cl.getResource("/csv/Subsidiary.csv");
+//	InputStream stream  = url.openConnection().getInputStream();
+
+	// HOME_DIR
+	// resourceLoader.getResource("a.csv") HOME_DIR = default: **/webapp
+	// resourceLoader.getResource("classpath:/a.csv") HOME_DIR = build to dir
+	// resourceLoader.getResource("classpath* : a.csv") libのファイルも読み込める
+
+	final String CSV_NAME = "classpath:/csv/Subsidiary.csv";
+
+	final String CSV_NAME_RET = "classpath:/csv/SubsidiaryRet.csv";
 
 	@RequestMapping(value = "/checkVal", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<SubsidiaryDomain> checkVal() throws Exception {
@@ -123,7 +137,10 @@ public class ExcelSubsidiary extends BaseController {
 	}
 
 	private void saveCsv(List<SubsidiaryDomain> lstDomain, String csvName) throws IOException {
-		File file = new File(csvName);
+	    Resource resource = resourceLoader.getResource(csvName);
+
+	    File file = resource.getFile();
+
 		CsvConfig cfg = new CsvConfig(',');
 		cfg.setNullString("NULL"); // null 値扱いする文字列を指定します。
 		cfg.setIgnoreLeadingWhitespaces(true); // 項目値前のホワイトスペースを除去します。
@@ -138,7 +155,10 @@ public class ExcelSubsidiary extends BaseController {
 		Csv.save(lstDomain, file, cfg, new CsvEntityListHandler<SubsidiaryDomain>(SubsidiaryDomain.class));
 	}
 	private List<SubsidiaryDomain> getCsvDatas(String csvName) throws IOException {
-		File file = new File(csvName);
+	    Resource resource = resourceLoader.getResource(csvName);
+
+	    File file = resource.getFile();
+
 		CsvConfig cfg = new CsvConfig(',');
 		cfg.setNullString("NULL"); // null 値扱いする文字列を指定します。
 		cfg.setIgnoreLeadingWhitespaces(true); // 項目値前のホワイトスペースを除去します。

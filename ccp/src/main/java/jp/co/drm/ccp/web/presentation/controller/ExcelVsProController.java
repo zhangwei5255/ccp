@@ -84,7 +84,17 @@ public class ExcelVsProController extends BaseController {
 
 	//final String CSV_NAME = "classpath:csv/excel.csv";
 	//final String CSV_NAME = "file:///C:/Users/user/git/ccp/ccp/src/main/resources/csv/excel.csv";
-	final String CSV_NAME = "C:/Users/user/git/ccp/ccp/src/main/resources/csv/excel.csv";
+
+
+	// HOME_DIR
+	// resourceLoader.getResource("a.csv") HOME_DIR = default: **/webapp
+	// resourceLoader.getResource("classpath:/a.csv") HOME_DIR = build to dir
+	// resourceLoader.getResource("classpath* : a.csv") libのファイルも読み込める
+	// final String CSV_NAME = "C:/Users/user/git/ccp/ccp/src/main/resources/csv/excel.csv";
+	final String CSV_NAME = "classpath:/csv/excel.csv";
+
+
+
 
 	@RequestMapping(value = "/cmp", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<String> cmp() throws Exception {
@@ -186,7 +196,9 @@ public class ExcelVsProController extends BaseController {
 	}
 
 	private List<String[]> getCsvDatas(String csvName) throws IOException{
-		File file = new File(csvName);
+	    Resource resource = resourceLoader.getResource(csvName);
+
+	    File file = resource.getFile();
 		List<String[]> lstXls = Csv.load(file, new CsvConfig(), new StringArrayListHandler());
 		return lstXls;
 	}

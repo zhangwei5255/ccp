@@ -9,7 +9,7 @@ public class SubsidiaryDomain {
 	@CsvColumn(name = "category")
     private String category;
 
-	@CsvColumn(name = "key")
+	@CsvColumn(name = "キー名")
 	private String key;
 
 	@CsvColumn(name = "US")
