@@ -1,6 +1,8 @@
 package jp.co.drm.ccp.web.presentation.domain;
 
-public class DiffDomain {
+import java.io.Serializable;
+
+public class DiffDomain implements Serializable{
 
 	private String val1;
 	private String val2;
