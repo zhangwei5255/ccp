@@ -47,6 +47,8 @@ public class EC5347Controller extends BaseController {
 	final String PHP_HOME = "classpath:/php/";
 	final String PHP_IN = PHP_HOME + "gwos_in.php";
 	final String PHP_IN_ENV = PHP_HOME + "gwos_in_env.php";
+	final String API_HOME = "classpath:/api/";
+	final String API_IN  = API_HOME + "gwos_in.properties";
 
 	@RequestMapping(value = "/getPhpData", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<KeyVal> getPhpData() throws Exception {
@@ -70,10 +72,43 @@ public class EC5347Controller extends BaseController {
 
 	}
 
-	@RequestMapping(value = "/chkOver", method = { RequestMethod.GET, RequestMethod.POST })
-	public List<String> chkOver() throws IOException{
+	@RequestMapping(value = "/chkOverPhp", method = { RequestMethod.GET, RequestMethod.POST })
+	public List<String> chkOverPhp() throws IOException{
 		List<String> lstDes =  getDatas(PHP_IN, PHP_IN_ENV);
 		List<KeyVal> lstKeyVal = convertPhp(lstDes);
+
+		List<String> lst = chkOver(lstKeyVal);
+
+		return lst;
+
+	}
+
+	@RequestMapping(value = "/getJavaData", method = { RequestMethod.GET, RequestMethod.POST })
+	public List<KeyVal> getJavaData() throws Exception {
+
+//		List<String[]> lstDomain = getCsvDatas(CSV_NAME);
+//		List<KeyVal> lstKeyVal = lstDomain.stream().map(arr -> arr2Bean(arr[0])).collect(Collectors.toList());
+//		logger.info("対象の件数：" + lstKeyVal.size());
+//
+//		// KEYの昇順でソートする
+//		lstKeyVal = lstKeyVal.stream().sorted((o1, o2) -> o1.getKey().compareTo(o2.getKey()))
+//				.collect(Collectors.toList());
+
+		List<String> lstDes =  getDatas(API_IN);
+		List<KeyVal> lstKeyVal = convertJava(lstDes);
+
+		// KEYの昇順でソートする
+		lstKeyVal = lstKeyVal.stream().sorted((o1, o2) -> o1.getKey().compareTo(o2.getKey()))
+				.collect(Collectors.toList());
+
+		return lstKeyVal;
+	}
+
+
+	@RequestMapping(value = "/chkOverJava", method = { RequestMethod.GET, RequestMethod.POST })
+	public List<String> chkOverJava() throws IOException{
+		List<String> lstDes =  getDatas(API_IN);
+		List<KeyVal> lstKeyVal = convertJava(lstDes);
 
 		List<String> lst = chkOver(lstKeyVal);
 
@@ -117,6 +152,20 @@ public class EC5347Controller extends BaseController {
 
 		return lstRet;
 
+	}
+
+	private List<KeyVal> convertJava(List<String> lstInput){
+		List<KeyVal> lstRet;
+		String regex = "^.*=.*$";
+		String regexGroup = "^(.*)=(.*)$";
+
+		lstRet = lstInput.stream()
+				.map(p -> p.trim())
+				.filter(p -> Pattern.matches(regex,p ))
+				.map(p -> string2KeyVal(regexGroup,p ))
+				.collect(Collectors.toList());
+
+		return lstRet;
 	}
 
 	private List<KeyVal> convertPhp(List<String> lstInput){
